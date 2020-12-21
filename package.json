@@ -1,0 +1,26 @@
+{
+	"name": "store-class",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "npx ts-node ./src/index.ts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gduke3/store-class.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/gduke3/store-class/issues"
+	},
+	"homepage": "https://github.com/gduke3/store-class#readme",
+	"devDependencies": {
+		"eslint": "^7.16.0",
+		"ts": "^0.2.2",
+		"ts-node": "^9.1.1",
+		"typescript": "^4.1.3"
+	}
+}
