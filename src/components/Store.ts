@@ -1,21 +1,35 @@
 class Store<T> implements IStore<T> {
-	private storage: (T | null)[] = [];
+	private storage: { [key: number]: T } = [];
 
-	getSize(): number {
-		return this.getAll().length;
+	getCount(): number {
+		return Object.keys(this.getAll()).length;
 	}
+
 	setByIndex(index: number, item: T): void {
 		this.storage[index] = item;
 	}
+
 	getByIndex(index: number): T | null {
-		return this.storage[index] ?? null;
+		return this.storage[index] || null;
 	}
+
 	getAll(): T[] {
-		return this.storage.filter((item) => item !== null) as T[];
+		const entriesStorage = Object.entries(this.storage);
+		const formattedStorage = entriesStorage.map(([key, value]) => value);
+
+		return formattedStorage;
 	}
+
 	removeByIndex(index: number): boolean {
 		if (this.storage[index]) {
-			this.storage[index] = null;
+			const entriesStorage = Object.entries(this.storage).map(([key, value]) => [
+				Number(key),
+				value,
+			]);
+			const filteredStorage = entriesStorage.filter(([key]) => key !== index);
+
+			this.storage = Object.fromEntries(filteredStorage);
+
 			return true;
 		}
 		return false;
@@ -28,5 +42,5 @@ export interface IStore<T> {
 	getByIndex: (index: number) => T | null;
 	removeByIndex: (index: number) => boolean;
 	getAll: () => T[];
-	getSize: () => number;
+	getCount: () => number;
 }
